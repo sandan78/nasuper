@@ -239,11 +239,7 @@ const Dashboard = () => {
     );
   };
 
-  const WizardPortal = ({ planId, open, onOpenChange }: { planId: string; open: boolean; onOpenChange: (v: boolean) => void }) => {
-    // Dynamic import inside component scope
-    const { StepWizard } = require("@/components/plan/StepWizard");
-    return <StepWizard planId={planId} open={open} onOpenChange={onOpenChange} />;
-  };
+
 
   return (
     <div className="min-h-screen bg-background relative pt-16">
