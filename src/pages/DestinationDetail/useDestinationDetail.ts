@@ -28,7 +28,7 @@ export const useDestinationDetail = () => {
   const decodedCountry = decodeURIComponent(country);
   const decodedName = decodeURIComponent(name);
   const location = useLocation() as { state?: { destination?: Destination } };
-  const { addPlan, selectedPlans, updatePlanStatus } = usePlans();
+  const { addPlan, selectedPlans, updatePlanStatus, computePlanProgress } = usePlans();
   const { toast } = useToast();
 
   // Resolve destination from location state or data
