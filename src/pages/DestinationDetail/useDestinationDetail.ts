@@ -53,13 +53,7 @@ export const useDestinationDetail = () => {
   // Progress calculation based on actual per-plan steps
   const getStepProgress = () => {
     if (!currentPlan) return 0;
-    // Use real plan progress from stored step data
-    try {
-      const { computePlanProgress } = usePlans();
-      return computePlanProgress(currentPlan.id);
-    } catch {
-      return 0;
-    }
+    return computePlanProgress(currentPlan.id);
   };
 
   // Always start at the first step and advance only when steps are completed
