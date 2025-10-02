@@ -74,162 +74,176 @@ const Dashboard = () => {
     }
   };
 
-  const PlanCard = ({ plan }: { plan: any }) => (
-    <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-full">
-      <div className="relative">
-        <img 
-          src={plan.image} 
-          alt={plan.name}
-          className="w-full h-48 object-cover"
-        />
-        <div className="absolute top-4 right-4">
-          <Badge className={`${getStatusColor(plan.status)} font-medium`}>
-            {plan.status}
-          </Badge>
-        </div>
-        <div className="absolute top-4 left-4">
-          <Badge variant="secondary" className="bg-black/50 text-white">
-            {plan.region}
-          </Badge>
-        </div>
-      </div>
-      <CardContent className="p-6 flex flex-col h-full">
-        {/* Progress Section for Ongoing Plans */}
-        {plan.status === 'ongoing' && (
-          <div className="mb-4 p-4 bg-amber-50 rounded-lg border border-amber-200">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-semibold text-amber-800">Journey in Progress</span>
-              <Target className="w-4 h-4 text-amber-600" />
-            </div>
-            <Progress value={getStepProgress(plan.status)} className="mb-3" />
-            <div className="text-xs text-amber-700">
-              <div className="font-medium mb-1">Current Phase: Explore & Experience</div>
-              <div>Visit attractions • Try local cuisine • Immerse in culture</div>
-            </div>
-          </div>
-        )}
+  const PlanCard = ({ plan }: { plan: any }) => {
+    const { computePlanProgress } = usePlans();
+    const progress = computePlanProgress(plan.id);
+    const [open, setOpen] = useState(false);
 
-        {/* Completed Journey Summary */}
-        {plan.status === 'completed' && (
-          <div className="mb-4 p-4 bg-green-50 rounded-lg border border-green-200">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircle className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-semibold text-green-800">Journey Completed!</span>
-            </div>
-            <div className="text-xs text-green-700">
-              Congratulations on completing your emotional journey to {plan.name}
-            </div>
-          </div>
-        )}
-
-        <div className="flex justify-between items-start mb-3">
-          <h3 className="text-xl font-semibold text-foreground">{plan.name}</h3>
-          <div className="flex items-center space-x-1">
-            <Star className="w-4 h-4 text-yellow-500 fill-current" />
-            <span className="text-sm font-medium">{plan.matchPercentage}%</span>
-          </div>
-        </div>
-        
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-          {plan.description}
-        </p>
-        
-        <div className="flex flex-wrap gap-2 mb-4">
-          {plan.culturalHighlights.slice(0, 2).map((highlight: string, index: number) => (
-            <Badge key={index} variant="outline" className="text-xs">
-              {highlight}
+    return (
+      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+        <div className="relative">
+          <img
+            src={plan.image}
+            alt={plan.name}
+            className="w-full h-48 object-cover"
+          />
+          <div className="absolute top-4 right-4">
+            <Badge className={`${getStatusColor(plan.status)} font-medium`}>
+              {plan.status}
             </Badge>
-          ))}
-        </div>
-        
-        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-          <span className="flex items-center">
-            <Calendar className="w-4 h-4 mr-1" />
-            {plan.bestTime}
-          </span>
-          <span>{plan.priceRange}</span>
-        </div>
-        
-        <Separator className="my-4" />
-        
-        <div className="flex items-center justify-between">
-          <div className="flex space-x-2">
-            <Button
-              size="sm"
-              variant={plan.status === 'selected' ? 'default' : 'outline'}
-              onClick={() => handleStatusChange(plan.id, 'selected')}
-              className="text-xs"
-            >
-              Selected
-            </Button>
-            <Button
-              size="sm"
-              variant={plan.status === 'ongoing' ? 'default' : 'outline'}
-              onClick={() => handleStatusChange(plan.id, 'ongoing')}
-              className="text-xs"
-            >
-              Ongoing
-            </Button>
-            <Button
-              size="sm"
-              variant={plan.status === 'completed' ? 'default' : 'outline'}
-              onClick={() => handleStatusChange(plan.id, 'completed')}
-              className="text-xs"
-            >
-              Completed
-            </Button>
           </div>
-          <Button 
-            size="sm" 
-            variant="ghost" 
-            onClick={() => removePlan(plan.id)}
-            className="text-red-500 hover:text-red-700 hover:bg-red-50"
-          >
-            <X className="w-4 h-4" />
-          </Button>
+          <div className="absolute top-4 left-4">
+            <Badge variant="secondary" className="bg-black/50 text-white">
+              {plan.region}
+            </Badge>
+          </div>
         </div>
+        <CardContent className="p-6 flex flex-col h-full">
+          <div className="mb-4 p-4 bg-muted/40 rounded-lg border">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-semibold">Plan Progress</span>
+              <span className="text-xs text-muted-foreground">{Math.round(progress)}%</span>
+            </div>
+            <Progress value={progress} />
+            <div className="mt-2 text-[11px] text-muted-foreground">Transport • Room • Emotion • Awareness • Culture • Report</div>
+          </div>
 
-        <div className="mt-4 flex gap-3 items-stretch">
-          <Button
-            className="flex-1 bg-gradient-ocean text-white hover:shadow-glow transition-all duration-300"
-            aria-label={`View details about ${plan.name} in ${plan.region}`}
-            onClick={() =>
-              navigate(`/destination/${encodeURIComponent(plan.region)}/${encodeURIComponent(plan.name)}`,
-                { state: { destination: plan } }
-              )
-            }
-          >
-            View Details
-          </Button>
-          {plan.status === 'selected' && (
-            <Button
-              variant="secondary"
-              className="flex-1"
-              onClick={() => {
-                handleStatusChange(plan.id, 'ongoing');
-                navigate('/dashboard?tab=ongoing');
-              }}
-              aria-label="Start journey and move to ongoing"
-            >
-              Start Journey
-            </Button>
+          {plan.status === 'completed' && (
+            <div className="mb-4 p-4 bg-green-50 rounded-lg border border-green-200">
+              <div className="flex items-center gap-2 mb-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span className="text-sm font-semibold text-green-800">Journey Completed!</span>
+              </div>
+              <div className="text-xs text-green-700">
+                Congratulations on completing your journey to {plan.name}
+              </div>
+            </div>
           )}
-          {plan.status === 'ongoing' && (
+
+          <div className="flex justify-between items-start mb-3">
+            <h3 className="text-xl font-semibold text-foreground">{plan.name}</h3>
+            <div className="flex items-center space-x-1">
+              <Star className="w-4 h-4 text-yellow-500 fill-current" />
+              <span className="text-sm font-medium">{plan.matchPercentage}%</span>
+            </div>
+          </div>
+
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+            {plan.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {plan.culturalHighlights.slice(0, 2).map((highlight: string, index: number) => (
+              <Badge key={index} variant="outline" className="text-xs">
+                {highlight}
+              </Badge>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+            <span className="flex items-center">
+              <Calendar className="w-4 h-4 mr-1" />
+              {plan.bestTime}
+            </span>
+            <span>{plan.priceRange}</span>
+          </div>
+
+          <Separator className="my-4" />
+
+          <div className="flex items-center justify-between">
+            <div className="flex space-x-2">
+              <Button
+                size="sm"
+                variant={plan.status === 'selected' ? 'default' : 'outline'}
+                onClick={() => handleStatusChange(plan.id, 'selected')}
+                className="text-xs"
+              >
+                Selected
+              </Button>
+              <Button
+                size="sm"
+                variant={plan.status === 'ongoing' ? 'default' : 'outline'}
+                onClick={() => handleStatusChange(plan.id, 'ongoing')}
+                className="text-xs"
+              >
+                Ongoing
+              </Button>
+              <Button
+                size="sm"
+                variant={plan.status === 'completed' ? 'default' : 'outline'}
+                onClick={() => handleStatusChange(plan.id, 'completed')}
+                className="text-xs"
+              >
+                Completed
+              </Button>
+            </div>
+            <div className="flex gap-2">
+              <Button size="sm" variant="outline" onClick={() => setOpen(true)}>Plan Steps</Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => removePlan(plan.id)}
+                className="text-red-500 hover:text-red-700 hover:bg-red-50"
+              >
+                <X className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          <div className="mt-4 flex gap-3 items-stretch">
             <Button
-              variant="secondary"
-              className="flex-1"
-              onClick={() => {
-                handleStatusChange(plan.id, 'completed');
-              }}
-              aria-label="Mark journey as completed"
+              className="flex-1 bg-gradient-ocean text-white hover:shadow-glow transition-all duration-300"
+              aria-label={`View details about ${plan.name} in ${plan.region}`}
+              onClick={() =>
+                navigate(`/destination/${encodeURIComponent(plan.region)}/${encodeURIComponent(plan.name)}`,
+                  { state: { destination: plan } }
+                )
+              }
             >
-              Complete
+              View Details
             </Button>
+            {plan.status === 'selected' && (
+              <Button
+                variant="secondary"
+                className="flex-1"
+                onClick={() => {
+                  handleStatusChange(plan.id, 'ongoing');
+                  navigate('/dashboard?tab=ongoing');
+                }}
+                aria-label="Start journey and move to ongoing"
+              >
+                Start Journey
+              </Button>
+            )}
+            {plan.status === 'ongoing' && (
+              <Button
+                variant="secondary"
+                className="flex-1"
+                onClick={() => {
+                  handleStatusChange(plan.id, 'completed');
+                }}
+                aria-label="Mark journey as completed"
+              >
+                Complete
+              </Button>
+            )}
+          </div>
+
+          {/* Wizard */}
+          {open && (
+            // lazy import to avoid SSR issues
+            <WizardPortal planId={plan.id} open={open} onOpenChange={setOpen} />
           )}
-        </div>
-      </CardContent>
-    </Card>
-  );
+        </CardContent>
+      </Card>
+    );
+  };
+
+  const WizardPortal = ({ planId, open, onOpenChange }: { planId: string; open: boolean; onOpenChange: (v: boolean) => void }) => {
+    // Dynamic import inside component scope
+    const { StepWizard } = require("@/components/plan/StepWizard");
+    return <StepWizard planId={planId} open={open} onOpenChange={onOpenChange} />;
+  };
 
   return (
     <div className="min-h-screen bg-background relative pt-16">
