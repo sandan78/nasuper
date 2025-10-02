@@ -232,8 +232,7 @@ const Dashboard = () => {
 
           {/* Wizard */}
           {open && (
-            // lazy import to avoid SSR issues
-            <WizardPortal planId={plan.id} open={open} onOpenChange={setOpen} />
+            <StepWizard planId={plan.id} open={open} onOpenChange={setOpen} />
           )}
         </CardContent>
       </Card>
