@@ -24,6 +24,7 @@ import {
   Calendar as CalendarIcon
 } from "lucide-react";
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { StepWizard } from "@/components/plan/StepWizard";
 
 const Dashboard = () => {
   const { selectedPlans, updatePlanStatus, removePlan, getPlansByStatus } = usePlans();
