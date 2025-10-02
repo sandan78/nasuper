@@ -50,21 +50,23 @@ export const useDestinationDetail = () => {
     (p) => p.name === destination?.name && p.region === destination?.country,
   );
 
-  // Progress calculation
+  // Progress calculation based on actual per-plan steps
   const getStepProgress = () => {
     if (!currentPlan) return 0;
-    if (currentPlan.status === "selected") return 0;
-    if (currentPlan.status === "ongoing") return 50;
-    if (currentPlan.status === "completed") return 100;
-    return 0;
+    // Use real plan progress from stored step data
+    try {
+      const { computePlanProgress } = usePlans();
+      return computePlanProgress(currentPlan.id);
+    } catch {
+      return 0;
+    }
   };
 
+  // Always start at the first step and advance only when steps are completed
   const getCurrentStepIndex = () => {
     if (!currentPlan) return -1;
-    if (currentPlan.status === "selected") return 0;
-    if (currentPlan.status === "ongoing") return 4;
-    if (currentPlan.status === "completed") return 6;
-    return -1;
+    if (currentPlan.status === "completed") return travelSteps.length - 1;
+    return 0;
   };
 
   // Rent text based on price range
