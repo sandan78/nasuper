@@ -25,7 +25,7 @@ const Index = () => {
       <HeroSection />
       <EmotionForm />
       <FeatureCards />
-      
+
       {/* Recommended Destinations */}
       <section className="py-20 px-6 bg-muted/30">
         <div className="max-w-7xl mx-auto">
