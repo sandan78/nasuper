@@ -1,9 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, Heart, Plus, Check } from "lucide-react";
+import { MapPin, Clock, Plus, Check } from "lucide-react";
 import { usePlans } from "@/contexts/PlanContext";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 interface DestinationCardProps {
   name: string;
@@ -39,6 +40,8 @@ export const DestinationCard = ({
   const { addPlan, selectedPlans, updatePlanStatus } = usePlans();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const isSelected = selectedPlans.some(
     (plan) => plan.name === name && plan.region === country
@@ -72,7 +75,7 @@ export const DestinationCard = ({
   };
 
   const handleGetGoingPlans = () => {
-    const existing = selectedPlans.find( 
+    const existing = selectedPlans.find(
       (plan) => plan.name === name && plan.region === country
     );
     if (!existing) {
@@ -108,25 +111,6 @@ export const DestinationCard = ({
     navigate("/dashboard?tab=ongoing");
   };
 
-  const safetyColor = {
-    high: "#32ba7c",
-    medium: "#f1c232",
-    low: "#e65151",
-  };
-
-  const getSafetyIcon = () => {
-    switch (safetyLevel) {
-      case "high":
-        return "🟢";
-      case "medium":
-        return "🟡";
-      case "low":
-        return "🔴";
-      default:
-        return "";
-    }
-  };
-
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>
   ) => {
@@ -135,262 +119,325 @@ export const DestinationCard = ({
   };
 
   return (
-    <Card className="destination-card h-full">
+    <Card
+      className={`destination-card-elite h-full overflow-hidden cursor-pointer transform-gpu ${isHovered ? 'is-hovered' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <style>{`
-        .destination-card {
-          background: #fff;
-          border-radius: 1rem;
-          box-shadow: 0 6px 22px rgba(0,0,0,0.08);
-          border: 1px solid #ececec;
+        .destination-card-elite {
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+          border-radius: 24px;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(20px) saturate(180%);
+          -webkit-backdrop-filter: blur(20px) saturate(180%);
           width: 100%;
           height: 100%;
-          font-family: 'Inter', Arial, sans-serif;
+          font-family: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
           padding: 0;
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .destination-card:hover {
-          box-shadow: 0px 10px 28px rgba(0,0,0,0.6);
-          transform: translateY(-6px);
+          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          position: relative;
+          isolation: isolate;
+          box-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.08),
+            0 1px 3px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        /* Image */
-        .destination-img-wrap {
+        /* Enhanced hover effects */
+        .destination-card-elite:hover {
+          transform: translateY(-12px) scale(1.02);
+          box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.15),
+            0 15px 30px rgba(0, 0, 0, 0.1),
+            0 0 0 1px rgba(255, 255, 255, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Image container with parallax effect */
+        .destination-img-container {
           position: relative;
-          height: 200px;
+          height: 240px;
           width: 100%;
           overflow: hidden;
-          background: #f2f4f7;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           flex-shrink: 0;
+          z-index: 1;
+          transform-style: preserve-3d;
         }
+
         .destination-img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
+          transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+          transform: scale(1);
+          opacity: ${imageLoaded ? 1 : 0};
         }
 
-        /* Top-right match pill */
-        .destination-badge {
+        .destination-card-elite:hover .destination-img {
+          transform: scale(1.08);
+          filter: brightness(1.1) contrast(1.05);
+        }
+
+        /* Loading shimmer for image */
+        .image-shimmer {
           position: absolute;
-          top: 12px;
-          right: 12px;
-          background: #1f1f1f;
-          color: #fff;
-          font-weight: 700;
-          border-radius: 999px;
-          padding: 6px 12px;
-          font-size: 0.86rem;
-          line-height: 1;
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+          );
+          animation: shimmer 2s infinite;
         }
 
-        /* Body */
-        .destination-body {
-          padding: 20px;
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
+        }
+
+        /* Gradient overlay */
+        .image-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 60%;
+          background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        /* Content section */
+        .destination-content-wrapper {
+          padding: 24px;
           display: flex;
           flex-direction: column;
           flex-grow: 1;
           justify-content: space-between;
+          position: relative;
+          z-index: 2;
+          background: transparent;
         }
 
-        /* Title + Location block */
+        /* Title with gradient text */
         .destination-title {
-          font-size: 1.35rem;
-          font-weight: 1500;
-          margin: 0;
-          color: #101828;
-          letter-spacing: -0.01em;
+          font-size: 1.5rem;
+          font-weight: 700;
+          margin: 0 0 8px 0;
+          background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          letter-spacing: -0.02em;
           line-height: 1.2;
+          transition: all 0.3s ease;
         }
+
+        .destination-card-elite:hover .destination-title {
+          background: linear-gradient(135deg, #ffffff 0%, #c7d2fe 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        /* Location with smooth animation */
         .destination-location {
           display: inline-flex;
           align-items: center;
-          gap: 6px;
-          font-size: 0.92rem;
+          gap: 8px;
+          font-size: 0.95rem;
           font-weight: 500;
-          color: #6b7280; /* muted gray */
-          margin-top: 6px;   /* tight under title */
-          margin-bottom: 10px; /* space above description */
-        }
-        .destination-location svg {
-          width: 16px;
-          height: 16px;
-          flex: 0 0 16px;
-          vertical-align: middle;
+          color: #d1d5db;
+          margin-bottom: 16px;
+          transition: all 0.3s ease;
         }
 
-        /* Description */
+        .destination-card-elite:hover .destination-location {
+          color: #e5e7eb;
+          transform: translateX(2px);
+        }
+
+        /* Description with elegant typography */
         .destination-description {
-          font-size: 0.96rem;
-          line-height: 1.55;
-          color: #303030;
-          margin: 0 0 12px 0;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          color: #d1d5db;
+          margin: 0 0 20px 0;
           flex-grow: 1;
           display: -webkit-box;
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
+          transition: all 0.3s ease;
         }
 
-        /* Content wrapper for consistent spacing */
-        .destination-content {
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
+        /* Enhanced info grid */
+        .destination-meta-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 12px;
+          margin-bottom: 20px;
         }
 
-        /* Bottom section */
-        .destination-bottom {
-          margin-top: auto;
-          padding-top: 12px;
-        }
-
-        /* Meta row (time, price, safety) */
-        .destination-info-row {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 0.92rem;
-          color: #475d69;
-          gap: 10px;
-          margin-bottom: 16px;
-        }
-        .meta-left {
-          display: inline-flex;
-          align-items: center;
-          gap: 16px;
-          white-space: nowrap;
-        }
         .meta-item {
-          display: inline-flex;
+          display: flex;
           align-items: center;
-          gap: 6px;
-        }
-        .safety {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-weight: 700;
-        }
-        .safety-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 999px;
-          display: inline-block;
+          gap: 8px;
+          font-size: 0.85rem;
+          color: #9ca3af;
+          transition: all 0.3s ease;
         }
 
-        /* Buttons */
-        .destination-buttons {
+        .destination-card-elite:hover .meta-item {
+          color: #d1d5db;
+        }
+
+        .meta-icon {
+          opacity: 0.7;
+          transition: all 0.3s ease;
+        }
+
+        .destination-card-elite:hover .meta-icon {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+
+        /* Enhanced buttons */
+        .destination-actions {
           display: flex;
           gap: 12px;
+          margin-top: auto;
         }
-        .destination-btn {
+
+        .action-btn {
           flex: 1;
-          border-radius: 0.8rem;
-          font-size: 0.95rem;
+          border-radius: 14px;
+          font-size: 0.9rem;
           font-weight: 600;
-          padding: 0.7rem;
-          transition: transform 0.15s ease;
+          padding: 12px 16px;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           min-height: 44px;
+          position: relative;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+          color: white;
         }
-        .destination-btn:hover:not(:disabled) {
-          transform: translateY(-1px);
+
+        .action-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.6s;
         }
-        .destination-btn:disabled {
-          opacity: 0.6;
-          cursor: not-allowed;
+
+        .action-btn:hover::before {
+          left: 100%;
+        }
+
+        .action-btn:hover {
+          transform: translateY(-2px);
+          border-color: rgba(255, 255, 255, 0.3);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-btn:active {
+          transform: translateY(0);
         }
       `}</style>
 
-      <div className="destination-img-wrap">
+      {/* Image Section with Enhanced Effects */}
+      <div className="destination-img-container">
+        {!imageLoaded && <div className="image-shimmer" />}
         <img
           src={image || "/placeholder.svg"}
           alt={`${name}, ${country}`}
           className="destination-img"
           onError={handleImageError}
+          onLoad={() => setImageLoaded(true)}
         />
-        <div className="destination-badge">
-          <Heart style={{ height: 16, width: 16 }} />
-          {matchPercentage}% Match
-        </div>
+        <div className="image-overlay" />
       </div>
 
-      <div className="destination-body">
-        <div className="destination-content">
+      {/* Content Section */}
+      <div className="destination-content-wrapper">
+        <div className="destination-main">
           <h2 className="destination-title">{name}</h2>
-
-          {/* state name under the title with pin */}
           <div className="destination-location">
-            <MapPin />
+            <MapPin className="w-4 h-4 meta-icon" />
             <span>{country}</span>
           </div>
-
-          <div className="destination-description">{description}</div>
+          <p className="destination-description">{description}</p>
         </div>
 
-        <div className="destination-bottom">
-          <div className="destination-info-row">
-            <div className="meta-left">
-              <span className="meta-item">
-                <Clock style={{ width: 16, height: 16 }} />
-                {bestTime}
-              </span>
-              <span className="meta-item">💰 {priceRange}</span>
+        <div className="destination-footer">
+          <div className="destination-meta-grid">
+            <div className="meta-item">
+              <Clock className="w-4 h-4 meta-icon" />
+              <span>{bestTime}</span>
             </div>
-
-            <div
-              className="safety"
-              style={{ color: safetyColor[safetyLevel] }}
-              aria-label={`${safetyLevel} safety`}
-            >
-              <span
-                className="safety-dot"
-                style={{ backgroundColor: safetyColor[safetyLevel] }}
-              />
-              {safetyLevel} Safety
-            </div>
+            {idealGroupSize && (
+              <div className="meta-item">
+                <span>{idealGroupSize}</span>
+              </div>
+            )}
           </div>
 
-          <div className="destination-buttons">
+          <div className="destination-actions">
             <Button
-              className="destination-btn"
-              onClick={() =>
+              className="action-btn"
+              onClick={() => {
                 navigate(
                   `/destination/${encodeURIComponent(
                     country
                   )}/${encodeURIComponent(name)}`
-                )
-              }
+                );
+                setTimeout(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }, 100);
+              }}
             >
-              View Details
+              Explore
             </Button>
 
             {!hideGetGoingPlans && (
-              <Button className="destination-btn" onClick={handleGetGoingPlans}>
+              <Button
+                className="action-btn"
+                onClick={handleGetGoingPlans}
+              >
                 Get Going
               </Button>
             )}
 
             <Button
-              className="destination-btn"
+              className="action-btn"
               onClick={handleAddToPlan}
               disabled={isSelected}
             >
               {isSelected ? (
                 <>
-                  <Check style={{ width: 16, height: 16, marginRight: 6 }} />
+                  <Check className="w-4 h-4 mr-2" />
                   Added
                 </>
               ) : (
                 <>
-                  <Plus style={{ width: 16, height: 16, marginRight: 6 }} />
-                  Add
+                  <Plus className="w-4 h-4 mr-2" />
+                  Add Plan
                 </>
               )}
             </Button>
@@ -399,4 +446,4 @@ export const DestinationCard = ({
       </div>
     </Card>
   );
-};
+}; 
