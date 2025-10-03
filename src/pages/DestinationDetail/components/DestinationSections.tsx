@@ -24,40 +24,17 @@ interface DestinationSectionsProps {
 }
 
 export const AboutSection = ({ destination }: { destination: Destination }) => (
-  <Card className="border-2 shadow-lg">
-    <CardContent className="p-8">
-      <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-        <div className="p-3 bg-primary/10 rounded-xl">
-          <Info className="w-8 h-8 text-primary" />
+  <Card className="border shadow-sm">
+    <CardContent className="p-4 md:p-6">
+      <h2 className="text-2xl font-semibold mb-3 flex items-center gap-2">
+        <div className="p-2 bg-primary/10 rounded-lg">
+          <Info className="w-5 h-5 text-primary" />
         </div>
         About {destination.name}
       </h2>
-      
-      <p className="text-lg leading-relaxed text-muted-foreground mb-8">
+      <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
         {destination.description}
       </p>
-
-      {/* Emotional Match Section */}
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-6 border-2 border-primary/20">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
-          <div className="p-2 bg-primary/20 rounded-lg">
-            <Heart className="w-6 h-6 text-primary" />
-          </div>
-          Emotional Connection
-        </h3>
-        <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
-          {destination.emotionalMatch}
-        </p>
-        <div className="flex items-center gap-4">
-          <Progress
-            value={destination.matchPercentage}
-            className="flex-1 h-4"
-          />
-          <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-2 text-sm font-bold">
-            {destination.matchPercentage}% Match
-          </Badge>
-        </div>
-      </div>
     </CardContent>
   </Card>
 );
