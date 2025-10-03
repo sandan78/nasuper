@@ -61,12 +61,12 @@ export const SafetyAndTimeSection = ({ destination, rentText }: DestinationSecti
             Safety Information
           </h3>
           
-          <div className="space-y-6">
-            <div className={`${safety.bg} rounded-2xl p-6 border-2 border-current/20`}>
-              <div className="flex items-center gap-4 mb-4">
-                <SafetyIcon className={`w-8 h-8 ${safety.color}`} />
+          <div className="space-y-4">
+            <div className={`${safety.bg} rounded-xl p-4 border border-current/20`}>
+              <div className="flex items-center gap-3 mb-2">
+                <SafetyIcon className={`w-5 h-5 ${safety.color}`} />
                 <div>
-                  <h4 className={`text-xl font-bold ${safety.color} capitalize`}>
+                  <h4 className={`text-lg font-semibold ${safety.color} capitalize`}>
                     {destination.safetyLevel} Safety Level
                   </h4>
                   <p className="text-sm text-muted-foreground">
