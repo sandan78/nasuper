@@ -133,9 +133,9 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
             })}
           </div>
 
-          {/* Bottom Decoration */}
-          <div className="mt-8 pt-6 border-t border-border/50">
-            <p className="text-center text-sm text-muted-foreground">
+          {/* Bottom Note */}
+          <div className="mt-4 pt-4 border-t border-border/50">
+            <p className="text-center text-xs text-muted-foreground">
               Experience the rich cultural tapestry of {destination.name}
             </p>
           </div>
