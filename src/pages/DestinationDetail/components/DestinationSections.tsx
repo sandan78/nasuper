@@ -184,24 +184,24 @@ export const MapSection = ({ destination }: { destination: Destination }) => {
   };
 
   return (
-    <Card className="border-2 shadow-lg">
-      <CardContent className="p-8">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold mb-4 flex items-center justify-center gap-3">
-            <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-xl">
-              <Map className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+    <Card className="border shadow-sm">
+      <CardContent className="p-4 md:p-6">
+        <div className="text-center mb-4">
+          <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
+            <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+              <Map className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
             Explore {destination.name}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               on Map
             </span>
           </h3>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Discover attractions, accommodations, and local points of interest
           </p>
         </div>
-        
-        <div className="rounded-2xl overflow-hidden border-2 border-border shadow-lg">
+
+        <div className="rounded-xl overflow-hidden border border-border">
           <GoogleMapEmbed
             region={destination.country}
             embedUrl={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dO7ClMX0B4IqPY&q=${encodeURIComponent(
