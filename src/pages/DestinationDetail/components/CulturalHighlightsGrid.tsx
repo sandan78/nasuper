@@ -117,11 +117,11 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-bold leading-tight">
+                  <div className="space-y-2">
+                    <h3 className="text-base font-semibold leading-tight">
                       {normalized.name}
                     </h3>
-                    <p className="text-base leading-relaxed opacity-90">
+                    <p className="text-sm leading-relaxed opacity-90">
                       {normalized.description}
                     </p>
                   </div>
