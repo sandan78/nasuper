@@ -78,7 +78,8 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
             </div>
             <div>
               <h2 className="text-xl font-semibold text-foreground">
-                Cultural Highlights
+                Tourist Places
+                <br />
               </h2>
               <p className="text-muted-foreground mt-0.5 text-sm">
                 Discover the people, traditions, and way of life that make {destination.name} unique
@@ -88,7 +89,7 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
         </div>
 
         {/* Highlights Grid */}
-        <div className="p-4 md:p-6">
+        <div className="p-6">
           <div className="grid gap-4 md:grid-cols-2">
             {destination.culturalHighlights.map((highlight, index) => {
               const normalized = normalizeHighlight(highlight);
