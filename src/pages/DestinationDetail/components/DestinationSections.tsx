@@ -50,13 +50,13 @@ export const SafetyAndTimeSection = ({ destination, rentText }: DestinationSecti
   const SafetyIcon = safety.icon;
 
   return (
-    <div className="grid md:grid-cols-2 gap-6">
+    <div className="grid md:grid-cols-2 gap-4">
       {/* Safety Information */}
-      <Card className="border-2 shadow-lg">
-        <CardContent className="p-8">
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-            <div className={`p-3 rounded-xl ${safety.bg}`}>
-              <Shield className={`w-7 h-7 ${safety.color}`} />
+      <Card className="border shadow-sm">
+        <CardContent className="p-4 md:p-6">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <div className={`p-2 rounded-lg ${safety.bg}`}>
+              <Shield className={`w-5 h-5 ${safety.color}`} />
             </div>
             Safety Information
           </h3>
