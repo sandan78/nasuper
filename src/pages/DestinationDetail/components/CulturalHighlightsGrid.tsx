@@ -98,7 +98,7 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
               return (
                 <div
                   key={index}
-                  className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] ${categoryColors}`}
+                  className={`group relative p-4 rounded-xl border transition-all duration-200 hover:shadow-sm ${categoryColors}`}
                   data-testid={`cultural-highlight-${index}`}
                 >
                   {/* Category Badge */}
