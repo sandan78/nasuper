@@ -47,7 +47,7 @@ export const ParticleBackground = ({ theme = "minimal" }: ParticleBackgroundProp
       ref={containerRef}
       className="absolute inset-0 -z-10 overflow-hidden"
       style={{
-        background: "radial-gradient(circle at center, #0d0d0d, #000)", // space-like bg
+        background: "transparent",
       }}
     >
       {/* Earth center glow */}
