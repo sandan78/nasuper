@@ -103,51 +103,51 @@ export const SafetyAndTimeSection = ({ destination, rentText }: DestinationSecti
       </Card>
 
       {/* Best Time & Cost */}
-      <Card className="border-2 shadow-lg">
-        <CardContent className="p-8">
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-            <div className="p-3 bg-amber-100 dark:bg-amber-900 rounded-xl">
-              <Clock className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+      <Card className="border shadow-sm">
+        <CardContent className="p-4 md:p-6">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <div className="p-2 bg-amber-100 dark:bg-amber-900 rounded-lg">
+              <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
             </div>
             Travel Planning
           </h3>
-          
-          <div className="space-y-6">
+
+          <div className="space-y-4">
             {/* Best Time */}
-            <div className="bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-6 border-2 border-amber-200 dark:border-amber-800">
-              <div className="flex items-center gap-4 mb-3">
-                <Thermometer className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                <h4 className="text-lg font-bold text-amber-700 dark:text-amber-300">
+            <div className="bg-amber-50 dark:bg-amber-950/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800">
+              <div className="flex items-center gap-3 mb-2">
+                <Thermometer className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                <h4 className="text-base font-semibold text-amber-700 dark:text-amber-300">
                   Best Time to Visit
                 </h4>
               </div>
-              <p className="text-amber-700 dark:text-amber-300 font-semibold text-lg">
+              <p className="text-amber-700 dark:text-amber-300 font-medium">
                 {destination.bestTime}
               </p>
             </div>
 
             {/* Cost Information */}
-            <div className="bg-green-50 dark:bg-green-950/30 rounded-2xl p-6 border-2 border-green-200 dark:border-green-800">
-              <div className="flex items-center gap-4 mb-3">
-                <DollarSign className="w-6 h-6 text-green-600 dark:text-green-400" />
-                <h4 className="text-lg font-bold text-green-700 dark:text-green-300">
+            <div className="bg-green-50 dark:bg-green-950/30 rounded-xl p-4 border border-green-200 dark:border-green-800">
+              <div className="flex items-center gap-3 mb-2">
+                <DollarSign className="w-5 h-5 text-green-600 dark:text-green-400" />
+                <h4 className="text-base font-semibold text-green-700 dark:text-green-300">
                   Accommodation Cost
                 </h4>
               </div>
-              <p className="text-green-700 dark:text-green-300 font-semibold">
+              <p className="text-green-700 dark:text-green-300 font-medium">
                 {rentText}
               </p>
-              <p className="text-xs text-green-600 dark:text-green-400 mt-2 opacity-75">
+              <p className="text-[11px] text-green-600 dark:text-green-400 mt-1 opacity-75">
                 Price Range: {destination.priceRange}
               </p>
             </div>
 
             {/* Additional Tips */}
-            <div className="space-y-3">
-              <h5 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider">
+            <div className="space-y-2">
+              <h5 className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Travel Tips
               </h5>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-1.5 text-xs">
                 <div className="flex items-start gap-2">
                   <Camera className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
                   <span>Book accommodations in advance during peak season</span>
