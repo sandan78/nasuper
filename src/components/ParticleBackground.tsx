@@ -73,8 +73,7 @@ export const ParticleBackground = ({ theme = "minimal" }: ParticleBackgroundProp
         />
       ))}
 
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-background/20 pointer-events-none" />
+
     </div>
   );
 };
