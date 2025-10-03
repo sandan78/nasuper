@@ -79,11 +79,11 @@ export const SafetyAndTimeSection = ({ destination, rentText }: DestinationSecti
             </div>
             
             {/* Safety Tips */}
-            <div className="space-y-3">
-              <h5 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider">
+            <div className="space-y-2">
+              <h5 className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Safety Tips
               </h5>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-1.5 text-xs">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Keep copies of important documents</span>
