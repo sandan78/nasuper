@@ -88,11 +88,6 @@ const Dashboard = () => {
             alt={plan.name}
             className="w-full h-48 object-cover"
           />
-          <div className="absolute top-4 right-4">
-            <Badge className={`${getStatusColor(plan.status)} font-medium`}>
-              {plan.status}
-            </Badge>
-          </div>
           <div className="absolute top-4 left-4">
             <Badge variant="secondary" className="bg-black/50 text-white">
               {plan.region}
@@ -121,79 +116,20 @@ const Dashboard = () => {
             </div>
           )}
 
-          <div className="flex justify-between items-start mb-3">
+          <div className="flex justify-between items-start mb-2">
             <h3 className="text-xl font-semibold text-foreground">{plan.name}</h3>
-            <div className="flex items-center space-x-1">
-              <Star className="w-4 h-4 text-yellow-500 fill-current" />
-              <span className="text-sm font-medium">{plan.matchPercentage}%</span>
-            </div>
           </div>
 
           <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
             {plan.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-4">
-            {plan.culturalHighlights.slice(0, 2).map((highlight: string, index: number) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {highlight}
-              </Badge>
-            ))}
-          </div>
 
-          <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-            <span className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" />
-              {plan.bestTime}
-            </span>
-            <span>{plan.priceRange}</span>
-          </div>
 
-          <Separator className="my-4" />
 
-          <div className="flex items-center justify-between">
-            <div className="flex space-x-2">
-              <Button
-                size="sm"
-                variant={plan.status === 'selected' ? 'default' : 'outline'}
-                onClick={() => handleStatusChange(plan.id, 'selected')}
-                className="text-xs"
-              >
-                Selected
-              </Button>
-              <Button
-                size="sm"
-                variant={plan.status === 'ongoing' ? 'default' : 'outline'}
-                onClick={() => handleStatusChange(plan.id, 'ongoing')}
-                className="text-xs"
-              >
-                Ongoing
-              </Button>
-              <Button
-                size="sm"
-                variant={plan.status === 'completed' ? 'default' : 'outline'}
-                onClick={() => handleStatusChange(plan.id, 'completed')}
-                className="text-xs"
-              >
-                Completed
-              </Button>
-            </div>
-            <div className="flex gap-2">
-              <Button size="sm" variant="outline" onClick={() => setOpen(true)}>Plan Steps</Button>
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={() => removePlan(plan.id)}
-                className="text-red-500 hover:text-red-700 hover:bg-red-50"
-              >
-                <X className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-
-          <div className="mt-4 flex gap-3 items-stretch">
+          <div className="mt-4 grid grid-cols-2 gap-3 items-stretch">
             <Button
-              className="flex-1 bg-gradient-ocean text-white hover:shadow-glow transition-all duration-300"
+              className="bg-gradient-ocean text-white hover:shadow-glow transition-all duration-300"
               aria-label={`View details about ${plan.name} in ${plan.region}`}
               onClick={() =>
                 navigate(`/destination/${encodeURIComponent(plan.region)}/${encodeURIComponent(plan.name)}`,
@@ -203,31 +139,19 @@ const Dashboard = () => {
             >
               View Details
             </Button>
-            {plan.status === 'selected' && (
-              <Button
-                variant="secondary"
-                className="flex-1"
-                onClick={() => {
-                  handleStatusChange(plan.id, 'ongoing');
-                  navigate('/dashboard?tab=ongoing');
-                }}
-                aria-label="Start journey and move to ongoing"
-              >
-                Start Journey
-              </Button>
-            )}
-            {plan.status === 'ongoing' && (
-              <Button
-                variant="secondary"
-                className="flex-1"
-                onClick={() => {
-                  handleStatusChange(plan.id, 'completed');
-                }}
-                aria-label="Mark journey as completed"
-              >
-                Complete
-              </Button>
-            )}
+            <div className="flex gap-2 justify-end">
+              <Button variant="outline" onClick={() => setOpen(true)} className="w-full">Plan Steps</Button>
+            </div>
+          </div>
+          <div className="mt-2 flex justify-end">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => removePlan(plan.id)}
+              className="text-red-500 hover:text-red-700 hover:bg-red-50"
+            >
+              <X className="w-4 h-4" />
+            </Button>
           </div>
 
           {/* Wizard */}
