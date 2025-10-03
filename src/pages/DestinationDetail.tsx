@@ -126,7 +126,7 @@ const DestinationDetail = () => {
           <HeroHeader destination={destination} />
 
           {/* Two Column Layout */}
-          <div className="grid lg:grid-cols-12 gap-8">
+          <div className="grid lg:grid-cols-12 gap-6">
             {/* Main Content Area */}
             <div className="lg:col-span-8 space-y-8">
               {/* About Section */}
