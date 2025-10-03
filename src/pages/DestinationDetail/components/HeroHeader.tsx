@@ -29,8 +29,7 @@ export const HeroHeader = ({ destination }: HeroHeaderProps) => {
         />
         
         {/* Enhanced Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
         {/* Floating Content */}
         <div className="absolute inset-0 flex items-end">
