@@ -24,40 +24,17 @@ interface DestinationSectionsProps {
 }
 
 export const AboutSection = ({ destination }: { destination: Destination }) => (
-  <Card className="border-2 shadow-lg">
-    <CardContent className="p-8">
-      <h2 className="text-3xl font-bold mb-6 flex items-center gap-3">
-        <div className="p-3 bg-primary/10 rounded-xl">
-          <Info className="w-8 h-8 text-primary" />
+  <Card className="border shadow-sm">
+    <CardContent className="p-4 md:p-6">
+      <h2 className="text-2xl font-semibold mb-3 flex items-center gap-2">
+        <div className="p-2 bg-primary/10 rounded-lg">
+          <Info className="w-5 h-5 text-primary" />
         </div>
         About {destination.name}
       </h2>
-      
-      <p className="text-lg leading-relaxed text-muted-foreground mb-8">
+      <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
         {destination.description}
       </p>
-
-      {/* Emotional Match Section */}
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-2xl p-6 border-2 border-primary/20">
-        <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
-          <div className="p-2 bg-primary/20 rounded-lg">
-            <Heart className="w-6 h-6 text-primary" />
-          </div>
-          Emotional Connection
-        </h3>
-        <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
-          {destination.emotionalMatch}
-        </p>
-        <div className="flex items-center gap-4">
-          <Progress
-            value={destination.matchPercentage}
-            className="flex-1 h-4"
-          />
-          <Badge className="bg-primary/20 text-primary border-primary/30 px-4 py-2 text-sm font-bold">
-            {destination.matchPercentage}% Match
-          </Badge>
-        </div>
-      </div>
     </CardContent>
   </Card>
 );
@@ -73,23 +50,23 @@ export const SafetyAndTimeSection = ({ destination, rentText }: DestinationSecti
   const SafetyIcon = safety.icon;
 
   return (
-    <div className="grid md:grid-cols-2 gap-6">
+    <div className="grid md:grid-cols-2 gap-4">
       {/* Safety Information */}
-      <Card className="border-2 shadow-lg">
-        <CardContent className="p-8">
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-            <div className={`p-3 rounded-xl ${safety.bg}`}>
-              <Shield className={`w-7 h-7 ${safety.color}`} />
+      <Card className="border shadow-sm">
+        <CardContent className="p-4 md:p-6">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <div className={`p-2 rounded-lg ${safety.bg}`}>
+              <Shield className={`w-5 h-5 ${safety.color}`} />
             </div>
             Safety Information
           </h3>
           
-          <div className="space-y-6">
-            <div className={`${safety.bg} rounded-2xl p-6 border-2 border-current/20`}>
-              <div className="flex items-center gap-4 mb-4">
-                <SafetyIcon className={`w-8 h-8 ${safety.color}`} />
+          <div className="space-y-4">
+            <div className={`${safety.bg} rounded-xl p-4 border border-current/20`}>
+              <div className="flex items-center gap-3 mb-2">
+                <SafetyIcon className={`w-5 h-5 ${safety.color}`} />
                 <div>
-                  <h4 className={`text-xl font-bold ${safety.color} capitalize`}>
+                  <h4 className={`text-lg font-semibold ${safety.color} capitalize`}>
                     {destination.safetyLevel} Safety Level
                   </h4>
                   <p className="text-sm text-muted-foreground">
@@ -102,11 +79,11 @@ export const SafetyAndTimeSection = ({ destination, rentText }: DestinationSecti
             </div>
             
             {/* Safety Tips */}
-            <div className="space-y-3">
-              <h5 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider">
+            <div className="space-y-2">
+              <h5 className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Safety Tips
               </h5>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-1.5 text-xs">
                 <div className="flex items-start gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
                   <span>Keep copies of important documents</span>
@@ -126,51 +103,51 @@ export const SafetyAndTimeSection = ({ destination, rentText }: DestinationSecti
       </Card>
 
       {/* Best Time & Cost */}
-      <Card className="border-2 shadow-lg">
-        <CardContent className="p-8">
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-            <div className="p-3 bg-amber-100 dark:bg-amber-900 rounded-xl">
-              <Clock className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+      <Card className="border shadow-sm">
+        <CardContent className="p-4 md:p-6">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <div className="p-2 bg-amber-100 dark:bg-amber-900 rounded-lg">
+              <Clock className="w-5 h-5 text-amber-600 dark:text-amber-400" />
             </div>
             Travel Planning
           </h3>
-          
-          <div className="space-y-6">
+
+          <div className="space-y-4">
             {/* Best Time */}
-            <div className="bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-6 border-2 border-amber-200 dark:border-amber-800">
-              <div className="flex items-center gap-4 mb-3">
-                <Thermometer className="w-6 h-6 text-amber-600 dark:text-amber-400" />
-                <h4 className="text-lg font-bold text-amber-700 dark:text-amber-300">
+            <div className="bg-amber-50 dark:bg-amber-950/30 rounded-xl p-4 border border-amber-200 dark:border-amber-800">
+              <div className="flex items-center gap-3 mb-2">
+                <Thermometer className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                <h4 className="text-base font-semibold text-amber-700 dark:text-amber-300">
                   Best Time to Visit
                 </h4>
               </div>
-              <p className="text-amber-700 dark:text-amber-300 font-semibold text-lg">
+              <p className="text-amber-700 dark:text-amber-300 font-medium">
                 {destination.bestTime}
               </p>
             </div>
 
             {/* Cost Information */}
-            <div className="bg-green-50 dark:bg-green-950/30 rounded-2xl p-6 border-2 border-green-200 dark:border-green-800">
-              <div className="flex items-center gap-4 mb-3">
-                <DollarSign className="w-6 h-6 text-green-600 dark:text-green-400" />
-                <h4 className="text-lg font-bold text-green-700 dark:text-green-300">
+            <div className="bg-green-50 dark:bg-green-950/30 rounded-xl p-4 border border-green-200 dark:border-green-800">
+              <div className="flex items-center gap-3 mb-2">
+                <DollarSign className="w-5 h-5 text-green-600 dark:text-green-400" />
+                <h4 className="text-base font-semibold text-green-700 dark:text-green-300">
                   Accommodation Cost
                 </h4>
               </div>
-              <p className="text-green-700 dark:text-green-300 font-semibold">
+              <p className="text-green-700 dark:text-green-300 font-medium">
                 {rentText}
               </p>
-              <p className="text-xs text-green-600 dark:text-green-400 mt-2 opacity-75">
+              <p className="text-[11px] text-green-600 dark:text-green-400 mt-1 opacity-75">
                 Price Range: {destination.priceRange}
               </p>
             </div>
 
             {/* Additional Tips */}
-            <div className="space-y-3">
-              <h5 className="font-semibold text-muted-foreground text-sm uppercase tracking-wider">
+            <div className="space-y-2">
+              <h5 className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
                 Travel Tips
               </h5>
-              <div className="space-y-2 text-sm">
+              <div className="space-y-1.5 text-xs">
                 <div className="flex items-start gap-2">
                   <Camera className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
                   <span>Book accommodations in advance during peak season</span>
@@ -207,24 +184,24 @@ export const MapSection = ({ destination }: { destination: Destination }) => {
   };
 
   return (
-    <Card className="border-2 shadow-lg">
-      <CardContent className="p-8">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold mb-4 flex items-center justify-center gap-3">
-            <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-xl">
-              <Map className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+    <Card className="border shadow-sm">
+      <CardContent className="p-4 md:p-6">
+        <div className="text-center mb-4">
+          <h3 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
+            <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+              <Map className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             </div>
             Explore {destination.name}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               on Map
             </span>
           </h3>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Discover attractions, accommodations, and local points of interest
           </p>
         </div>
-        
-        <div className="rounded-2xl overflow-hidden border-2 border-border shadow-lg">
+
+        <div className="rounded-xl overflow-hidden border border-border">
           <GoogleMapEmbed
             region={destination.country}
             embedUrl={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dO7ClMX0B4IqPY&q=${encodeURIComponent(

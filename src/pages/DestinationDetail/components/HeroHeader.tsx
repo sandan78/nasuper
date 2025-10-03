@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Heart, Shield, DollarSign } from "lucide-react";
+import { MapPin } from "lucide-react";
 import type { Destination } from "@/data/destinations";
 
 interface HeroHeaderProps {
@@ -29,8 +29,7 @@ export const HeroHeader = ({ destination }: HeroHeaderProps) => {
         />
         
         {/* Enhanced Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
         {/* Floating Content */}
         <div className="absolute inset-0 flex items-end">
@@ -55,55 +54,11 @@ export const HeroHeader = ({ destination }: HeroHeaderProps) => {
                     {destination.name}
                   </h1>
 
-                  {/* Match Percentage */}
-                  <div className="flex items-center gap-4">
-                    <Badge 
-                      className="bg-gradient-to-r from-pink-500/20 to-rose-500/20 backdrop-blur-lg text-white border-pink-300/30 px-6 py-2 text-base font-semibold hover:from-pink-500/30 hover:to-rose-500/30 transition-all duration-300"
-                      data-testid="match-percentage"
-                    >
-                      <Heart className="w-5 h-5 mr-2 fill-pink-400 text-pink-400" />
-                      {destination.matchPercentage}% Emotional Match
-                    </Badge>
-                  </div>
                 </div>
 
-                {/* Quick Stats Cards */}
-                <div className="grid grid-cols-2 gap-3 md:gap-4">
-                  <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-white border border-white/20 hover:bg-white/15 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-white/20 rounded-lg">
-                        <Shield className="w-5 h-5" />
-                      </div>
-                      <span className="text-sm font-medium opacity-90">Safety Level</span>
-                    </div>
-                    <p className="text-lg font-bold capitalize">
-                      {destination.safetyLevel}
-                    </p>
-                  </div>
-
-                  <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-white border border-white/20 hover:bg-white/15 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-white/20 rounded-lg">
-                        <DollarSign className="w-5 h-5" />
-                      </div>
-                      <span className="text-sm font-medium opacity-90">Budget Range</span>
-                    </div>
-                    <p className="text-lg font-bold">
-                      {destination.priceRange}
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
 
-            {/* Emotional Match Description */}
-            <div className="max-w-3xl">
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20">
-                <p className="text-white/90 text-lg leading-relaxed">
-                  {destination.emotionalMatch}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 

@@ -174,48 +174,6 @@ export const StickyActions = ({
         </CardContent>
       </Card>
 
-      {/* Quick Facts Card */}
-      <Card className="border shadow-md">
-        <CardContent className="p-6">
-          <h4 className="font-bold text-lg mb-4 text-center">Quick Facts</h4>
-          <div className="space-y-4">
-            {/* Emotional Match */}
-            <div className="text-center p-4 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/30 dark:to-rose-950/30 rounded-xl">
-              <div className="text-2xl font-bold text-pink-600 dark:text-pink-400 mb-1">
-                {destination.matchPercentage}%
-              </div>
-              <div className="text-sm text-muted-foreground">Emotional Match</div>
-            </div>
-
-            {/* Safety Level */}
-            <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-              <span className="text-sm font-medium">Safety Level</span>
-              <Badge 
-                variant="outline" 
-                className={`font-semibold ${
-                  destination.safetyLevel === 'high' ? 'text-green-600 border-green-300' :
-                  destination.safetyLevel === 'medium' ? 'text-yellow-600 border-yellow-300' :
-                  'text-red-600 border-red-300'
-                }`}
-              >
-                {destination.safetyLevel}
-              </Badge>
-            </div>
-
-            {/* Best Time */}
-            <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-              <span className="text-sm font-medium">Best Time</span>
-              <span className="text-sm font-semibold">{destination.bestTime}</span>
-            </div>
-
-            {/* Price Range */}
-            <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-              <span className="text-sm font-medium">Price Range</span>
-              <span className="text-sm font-semibold">{destination.priceRange}</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };

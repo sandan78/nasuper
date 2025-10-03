@@ -41,7 +41,7 @@ const DestinationDetail = () => {
   // Show error if destination not found
   if (!destination) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+      <div className="min-h-screen bg-background">
         <ParticleBackground theme="ocean" />
         
         <div className="container mx-auto px-6 py-20">
@@ -91,7 +91,7 @@ const DestinationDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <div className="min-h-screen bg-background">
       {/* SEO Tags */}
       <SEOTags destination={destination} />
       
@@ -126,7 +126,7 @@ const DestinationDetail = () => {
           <HeroHeader destination={destination} />
 
           {/* Two Column Layout */}
-          <div className="grid lg:grid-cols-12 gap-8">
+          <div className="grid lg:grid-cols-12 gap-6">
             {/* Main Content Area */}
             <div className="lg:col-span-8 space-y-8">
               {/* About Section */}

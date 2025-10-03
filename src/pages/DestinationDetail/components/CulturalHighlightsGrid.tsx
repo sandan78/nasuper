@@ -68,19 +68,20 @@ const normalizeHighlight = (
 
 export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridProps) => {
   return (
-    <Card className="overflow-hidden border-2 shadow-lg">
+    <Card className="overflow-hidden border shadow-sm">
       <CardContent className="p-0">
         {/* Header Section */}
-        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 p-8 border-b">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-xl">
-              <Sparkles className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 p-4 border-b">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-indigo-100 dark:bg-indigo-900 rounded-lg">
+              <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-foreground">
-                Cultural Highlights
+              <h2 className="text-xl font-semibold text-foreground">
+                Tourist Places
+                <br />
               </h2>
-              <p className="text-muted-foreground mt-1">
+              <p className="text-muted-foreground mt-0.5 text-sm">
                 Discover the people, traditions, and way of life that make {destination.name} unique
               </p>
             </div>
@@ -88,8 +89,8 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
         </div>
 
         {/* Highlights Grid */}
-        <div className="p-8">
-          <div className="grid gap-6 md:grid-cols-2">
+        <div className="p-6">
+          <div className="grid gap-4 md:grid-cols-2">
             {destination.culturalHighlights.map((highlight, index) => {
               const normalized = normalizeHighlight(highlight);
               const categoryColors = getCategoryColors(normalized.category);
@@ -98,7 +99,7 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
               return (
                 <div
                   key={index}
-                  className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] ${categoryColors}`}
+                  className={`group relative p-4 rounded-xl border transition-all duration-200 hover:shadow-sm ${categoryColors}`}
                   data-testid={`cultural-highlight-${index}`}
                 >
                   {/* Category Badge */}
@@ -117,11 +118,11 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-3">
-                    <h3 className="text-xl font-bold leading-tight">
+                  <div className="space-y-2">
+                    <h3 className="text-base font-semibold leading-tight">
                       {normalized.name}
                     </h3>
-                    <p className="text-base leading-relaxed opacity-90">
+                    <p className="text-sm leading-relaxed opacity-90">
                       {normalized.description}
                     </p>
                   </div>
@@ -133,9 +134,9 @@ export const CulturalHighlightsGrid = ({ destination }: CulturalHighlightsGridPr
             })}
           </div>
 
-          {/* Bottom Decoration */}
-          <div className="mt-8 pt-6 border-t border-border/50">
-            <p className="text-center text-sm text-muted-foreground">
+          {/* Bottom Note */}
+          <div className="mt-4 pt-4 border-t border-border/50">
+            <p className="text-center text-xs text-muted-foreground">
               Experience the rich cultural tapestry of {destination.name}
             </p>
           </div>
