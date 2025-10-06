@@ -33,12 +33,13 @@ interface StickyActionsProps {
   };
 }
 
-export const StickyActions = ({ 
-  destination, 
-  currentPlan, 
-  isSelected, 
+export const StickyActions = ({
+  destination,
+  currentPlan,
+  isSelected,
   progress,
-  handlers 
+  rentText,
+  handlers
 }: StickyActionsProps) => {
   const getStatusInfo = () => {
     if (!currentPlan) return null;
