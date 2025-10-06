@@ -103,9 +103,9 @@ export const StickyActions = ({
                     {progress}%
                   </span>
                 </div>
-                <Progress 
-                  value={progress} 
-                  className="h-3 bg-muted" 
+                <Progress
+                  value={progress}
+                  className="h-3 bg-muted"
                 />
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <TrendingUp className="w-4 h-4" />
@@ -172,6 +172,39 @@ export const StickyActions = ({
                 Added to your travel plans
               </div>
             )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Trip Insights (moved from main content) */}
+      <Card className="border shadow-sm">
+        <CardContent className="p-5">
+          <h4 className="text-base font-semibold mb-4">Trip Insights</h4>
+          <div className="space-y-3">
+            {/* Safety */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/40">
+              <Shield className="w-4 h-4 text-green-600" />
+              <div className="flex-1 flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Safety</span>
+                <span className="text-sm font-medium capitalize">{destination.safetyLevel}</span>
+              </div>
+            </div>
+            {/* Best Time */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-amber-50 dark:bg-amber-950/30">
+              <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+              <div className="flex-1 flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Best time</span>
+                <span className="text-sm font-medium">{destination.bestTime}</span>
+              </div>
+            </div>
+            {/* Cost */}
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-green-50 dark:bg-green-950/30">
+              <DollarSign className="w-4 h-4 text-green-600 dark:text-green-400" />
+              <div className="flex-1 flex items-center justify-between">
+                <span className="text-sm text-muted-foreground">Stay cost</span>
+                <span className="text-sm font-medium">{rentText}</span>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>
