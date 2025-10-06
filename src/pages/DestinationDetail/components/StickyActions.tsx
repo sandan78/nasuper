@@ -25,6 +25,7 @@ interface StickyActionsProps {
   currentPlan?: TravelPlan;
   isSelected: boolean;
   progress: number;
+  rentText: string;
   handlers: {
     addToPlan: () => void;
     startJourney: () => void;
