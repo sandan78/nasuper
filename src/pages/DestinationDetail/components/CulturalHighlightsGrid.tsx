@@ -1,7 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Sparkles } from "lucide-react";
 import type { Destination } from "@/data/destinations";
-import { Card, CardContent } from "@/components/ui/card";
 
 interface CulturalHighlightsGridProps {
   destination: Destination;
