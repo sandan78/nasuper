@@ -317,43 +317,7 @@ const Dashboard = () => {
             
             <TabsContent value="ongoing" className="mt-8">
               <div className="space-y-6">
-                {/* Travel Guide for Ongoing Plans */}
-                {getPlansByStatus('ongoing').length > 0 && (
-                  <Card className="bg-gradient-nature text-white">
-                    <CardContent className="p-6">
-                      <h3 className="text-2xl font-bold mb-4 flex items-center">
-                        <Target className="w-6 h-6 mr-2" />
-                        Your Active Journeys Guide
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <h4 className="font-semibold mb-3 flex items-center">
-                            <CalendarIcon className="w-4 h-4 mr-2" />
-                            Travel Checklist
-                          </h4>
-                          <ul className="space-y-2 text-sm opacity-90">
-                            <li>✅ Research completed</li>
-                            <li>✅ Bookings confirmed</li>
-                            <li>🎯 Currently exploring destinations</li>
-                            <li>📸 Capturing memories</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold mb-3 flex items-center">
-                            <ArrowRight className="w-4 h-4 mr-2" />
-                            Next Steps
-                          </h4>
-                          <ul className="space-y-2 text-sm opacity-90">
-                            <li>• Visit cultural highlights</li>
-                            <li>• Try local cuisines</li>
-                            <li>• Follow travel tips</li>
-                            <li>• Mark as complete when done</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
+
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {getPlansByStatus('ongoing').map((plan) => (
