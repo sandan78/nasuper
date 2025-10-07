@@ -1828,7 +1828,7 @@ export const bangaloreDestinations: Destination[] = [
     name: "Wonderla",
     country: "Near Bangalore",
     image:
-      "https://images.unsplash.com/photo-1489599096090-da5b0a113f2e?w=800&q=80",
+      "https://i.ibb.co/RT5VyfYY/wonderla.png",
     emotionalMatch: "Thrilling & Exciting",
     matchPercentage: 85,
     description:
