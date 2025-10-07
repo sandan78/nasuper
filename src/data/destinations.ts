@@ -249,7 +249,7 @@ export const tamilNaduDestinations: Destination[] = [
     name: "Kodaikanal",
     country: "Tamil Nadu",
     image:
-      "https://ibb.co/Pq35bjx",
+      "https://i.ibb.co/d81Q3MB/38734eb0-1528-4445-a762-d162113047b2.png",
     emotionalMatch: "Romantic & Dreamy",
     matchPercentage: 92,
     description:
