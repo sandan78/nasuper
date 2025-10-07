@@ -11,10 +11,9 @@ import { HeroHeader } from "./DestinationDetail/components/HeroHeader";
 import { StickyActions } from "./DestinationDetail/components/StickyActions";
 import { CulturalHighlightsGrid } from "./DestinationDetail/components/CulturalHighlightsGrid";
 import { TravelStepsTimeline } from "./DestinationDetail/components/TravelStepsTimeline";
-import { 
-  AboutSection, 
-  SafetyAndTimeSection, 
-  MapSection 
+import {
+  AboutSection,
+  MapSection
 } from "./DestinationDetail/components/DestinationSections";
 
 const DestinationDetail = () => {
@@ -143,12 +142,6 @@ const DestinationDetail = () => {
                 progress={progress}
               />
 
-              {/* Safety and Planning Information */}
-              <SafetyAndTimeSection 
-                destination={destination} 
-                rentText={rentText} 
-              />
-
               {/* Map Section */}
               <MapSection destination={destination} />
             </div>
@@ -161,6 +154,7 @@ const DestinationDetail = () => {
                 isSelected={isSelected}
                 progress={progress}
                 handlers={handlers}
+                rentText={rentText}
               />
             </div>
           </div>

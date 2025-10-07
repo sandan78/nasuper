@@ -336,20 +336,10 @@ export const DestinationCard = ({
         }
 
         .action-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-          transition: left 0.6s;
+          content: none;
         }
 
-        .action-btn:hover::before {
-          left: 100%;
-        }
-
+        
         .action-btn:hover {
           transform: translateY(-2px);
           border-color: rgba(255, 255, 255, 0.3);
@@ -446,4 +436,4 @@ export const DestinationCard = ({
       </div>
     </Card>
   );
-}; 
+};

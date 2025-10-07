@@ -249,7 +249,7 @@ export const tamilNaduDestinations: Destination[] = [
     name: "Kodaikanal",
     country: "Tamil Nadu",
     image:
-      "https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-e7ac-620a-b534-27ce8ff77d38/raw?se=2025-09-13T18%3A37%3A18Z&sp=r&sv=2024-08-04&sr=b&scid=fdba6151-6f16-567f-ae04-e19c9f8cb0ea&skoid=d5627e4c-566b-4761-a954-54993b0ed17b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-13T15%3A26%3A35Z&ske=2025-09-14T15%3A26%3A35Z&sks=b&skv=2024-08-04&sig=psufHmFqIr5u4u2L%2BYCzsvsxx7RE%2B%2BBaXNjp9dlXRI0%3D",
+      "https://i.ibb.co/d81Q3MB/38734eb0-1528-4445-a762-d162113047b2.png",
     emotionalMatch: "Romantic & Dreamy",
     matchPercentage: 92,
     description:
@@ -1691,7 +1691,7 @@ export const bangaloreDestinations: Destination[] = [
     name: "Innovative Film City",
     country: "Near Bangalore",
     image:
-      "https://images.unsplash.com/photo-1489599096090-da5b0a113f2e?w=800&q=80",
+      "https://i.ibb.co/vx7bQnpK/media-base-jollywood-studios-and-adventure-2023-9-26-t-11-22-30.jpg",
     emotionalMatch: "Fun & Entertaining",
     matchPercentage: 83,
     description:
@@ -1828,7 +1828,7 @@ export const bangaloreDestinations: Destination[] = [
     name: "Wonderla",
     country: "Near Bangalore",
     image:
-      "https://images.unsplash.com/photo-1489599096090-da5b0a113f2e?w=800&q=80",
+      "https://i.ibb.co/RT5VyfYY/wonderla.png",
     emotionalMatch: "Thrilling & Exciting",
     matchPercentage: 85,
     description:
