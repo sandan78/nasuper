@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import DestinationDetail from "./pages/DestinationDetail";
 import NotFound from "./pages/NotFound";
 import { PlanProvider } from "./contexts/PlanContext";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
